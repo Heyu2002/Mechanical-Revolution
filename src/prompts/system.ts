@@ -1,82 +1,85 @@
 /**
- * Structured system prompt builder and defaults.
- * Provides the base system prompt for the assistant agent,
- * with composable parts for customization.
+ * System prompt loader
+ * Loads the base system instructions from Markdown file
  */
 
-// ─── Types ───
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+/**
+ * Load system prompt from Markdown file
+ */
+function loadSystemPrompt(): string {
+  try {
+    const mdPath = join(__dirname, 'base_instructions', 'default.md');
+    return readFileSync(mdPath, 'utf-8');
+  } catch (error) {
+    console.warn('Failed to load base_instructions/default.md, using fallback');
+    return FALLBACK_SYSTEM_PROMPT;
+  }
+}
+
+/**
+ * Fallback system prompt (in case MD file is not available)
+ */
+const FALLBACK_SYSTEM_PROMPT = `
+You are an AI assistant within Mechanical Revolution, a multi-agent collaboration framework.
+
+Your capabilities include:
+- Multi-language conversation
+- Task analysis and decomposition
+- Code assistance
+- Information retrieval
+- Logical reasoning
+
+Behavioral guidelines:
+- Be concise and direct
+- Think step by step
+- Admit uncertainty clearly
+- Adapt response depth to question complexity
+- Respond in the user's language
+`;
+
+/**
+ * The default system prompt loaded from base_instructions/default.md
+ */
+export const DEFAULT_SYSTEM_PROMPT: string = loadSystemPrompt();
+
+/**
+ * Legacy interface for backward compatibility
+ * @deprecated Use DEFAULT_SYSTEM_PROMPT directly
+ */
 export interface SystemPromptParts {
-  /** Who the agent is */
   identity: string;
-  /** What the agent can do */
   capabilities: string;
-  /** How the agent should behave */
   behavior: string;
-  /** What the agent must not do */
   constraints: string;
-  /** How to format output */
   outputFormat: string;
 }
 
-// ─── Default Parts ───
-
-const DEFAULT_PARTS: SystemPromptParts = {
-  identity: `You are an AI assistant within Mechanical Revolution, a multi-agent collaboration framework. You may work alongside other specialized agents to accomplish complex tasks.`,
-
-  capabilities: `Your capabilities include:
-- Multi-language conversation (respond in the user's language)
-- Task analysis and decomposition
-- Code assistance (writing, reviewing, debugging)
-- Information retrieval and summarization
-- Logical reasoning and problem solving`,
-
-  behavior: `Behavioral guidelines:
-- Be concise and direct — avoid unnecessary filler
-- Think step by step before answering complex questions
-- When uncertain, say so clearly rather than guessing
-- Adapt your response depth to the complexity of the question
-- For simple questions, give short answers; for complex ones, be thorough`,
-
-  constraints: `Constraints:
-- Do not fabricate information or cite non-existent sources
-- Do not execute dangerous or destructive operations without explicit confirmation
-- Respect the user's language — respond in the same language they use
-- If a task is beyond your capability, suggest handing off to a more suitable agent`,
-
-  outputFormat: `Output format:
-- Use Markdown for structured responses
-- Use code blocks with language tags (e.g. \`\`\`typescript)
-- Use bullet points for lists
-- Keep paragraphs short and scannable`,
-};
-
-// ─── Builder ───
-
 /**
- * Build a system prompt from composable parts.
- * Any omitted part uses the default.
+ * Legacy builder for backward compatibility
+ * @deprecated Use DEFAULT_SYSTEM_PROMPT directly
  */
-export function buildSystemPrompt(parts: Partial<SystemPromptParts> = {}): string {
-  const merged: SystemPromptParts = { ...DEFAULT_PARTS, ...parts };
-
-  return [
-    merged.identity,
-    merged.capabilities,
-    merged.behavior,
-    merged.constraints,
-    merged.outputFormat,
-  ]
-    .filter(Boolean)
-    .join("\n\n");
+export function buildSystemPrompt(parts?: Partial<SystemPromptParts>): string {
+  if (parts && Object.keys(parts).length > 0) {
+    console.warn('buildSystemPrompt with custom parts is deprecated. Use DEFAULT_SYSTEM_PROMPT and append custom instructions.');
+  }
+  return DEFAULT_SYSTEM_PROMPT;
 }
 
 /**
- * The default system prompt for the built-in assistant agent.
+ * Legacy parts export for backward compatibility
+ * @deprecated Use DEFAULT_SYSTEM_PROMPT directly
  */
-export const DEFAULT_SYSTEM_PROMPT: string = buildSystemPrompt();
-
-/**
- * Access individual default prompt parts for selective override.
- */
-export const PROMPT_PARTS = DEFAULT_PARTS;
+export const PROMPT_PARTS: SystemPromptParts = {
+  identity: 'See base_instructions/default.md',
+  capabilities: 'See base_instructions/default.md',
+  behavior: 'See base_instructions/default.md',
+  constraints: 'See base_instructions/default.md',
+  outputFormat: 'See base_instructions/default.md',
+};

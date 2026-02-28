@@ -1,0 +1,4 @@
+interface:
+  display_name: "Task Decomposition"
+  short_description: "Decompose complex tasks and delegate to specialist agents"
+  default_prompt: "Analyze the user's request, decompose it into manageable subtasks, match each subtask to the most suitable specialist agent based on their capabilities, and coordinate execution through handoff mechanism. Aggregate results from multiple agents into a unified response."

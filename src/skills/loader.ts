@@ -1,10 +1,10 @@
-import { readFileSync, readdirSync, existsSync } from "fs";
+import { readFileSync, readdirSync, existsSync, statSync } from "fs";
 import { join } from "path";
 
 export interface SkillMetadata {
   name: string;
   description: string;
-  version: string;
+  version?: string;
   author?: string;
   agents?: string[];
 }
@@ -12,14 +12,15 @@ export interface SkillMetadata {
 export interface Skill {
   metadata: SkillMetadata;
   content: string;
+  skillDir?: string;  // Path to skill directory (for references, scripts, etc.)
 }
 
 /**
  * SkillLoader — loads and manages skill definitions from .skills directory.
  *
- * Skills are defined in Markdown files with YAML frontmatter.
- * This loader parses the frontmatter and content, making skills
- * available for discovery and documentation.
+ * Supports two formats:
+ * 1. Legacy: .skills/skill-name.md (flat structure)
+ * 2. Standard: .skills/skill-name/SKILL.md (Codex-style structure with agents/, references/, scripts/)
  *
  * @example
  * const loader = new SkillLoader();
@@ -41,7 +42,7 @@ export class SkillLoader {
 
   /**
    * Load all skills from the .skills directory.
-   * Recursively scans for .md files and parses them.
+   * Scans for both legacy .md files and standard SKILL.md in subdirectories.
    */
   loadAll(): void {
     if (!existsSync(this.skillsDir)) {
@@ -50,7 +51,31 @@ export class SkillLoader {
     }
 
     try {
-      this.loadSkillsFromDir(this.skillsDir);
+      const entries = readdirSync(this.skillsDir, { withFileTypes: true });
+
+      for (const entry of entries) {
+        const fullPath = join(this.skillsDir, entry.name);
+
+        if (entry.isDirectory()) {
+          // Check for SKILL.md in subdirectory (standard structure)
+          const skillMdPath = join(fullPath, 'SKILL.md');
+          if (existsSync(skillMdPath)) {
+            const fileContent = readFileSync(skillMdPath, "utf-8");
+            const skill = this.parseSkill(fileContent, fullPath);
+            if (skill) {
+              this.skills.set(skill.metadata.name, skill);
+            }
+          }
+        } else if (entry.isFile() && entry.name.endsWith(".md") && entry.name !== "README.md") {
+          // Legacy format: .md file directly in .skills/
+          const fileContent = readFileSync(fullPath, "utf-8");
+          const skill = this.parseSkill(fileContent);
+          if (skill) {
+            this.skills.set(skill.metadata.name, skill);
+          }
+        }
+      }
+
       console.log(`✓ Loaded ${this.skills.size} skill(s)`);
     } catch (err) {
       console.warn(`Failed to load skills: ${err}`);
@@ -58,87 +83,50 @@ export class SkillLoader {
   }
 
   /**
-   * Recursively load skills from a directory.
+   * Parse a skill from Markdown content with YAML frontmatter.
    */
-  private loadSkillsFromDir(dir: string): void {
-    const entries = readdirSync(dir, { withFileTypes: true });
-
-    for (const entry of entries) {
-      const fullPath = join(dir, entry.name);
-
-      if (entry.isDirectory()) {
-        // Recursively load from subdirectories
-        this.loadSkillsFromDir(fullPath);
-      } else if (entry.isFile() && entry.name.endsWith(".md") && entry.name !== "README.md") {
-        // Parse skill file
-        const fileContent = readFileSync(fullPath, "utf-8");
-        const skill = this.parseSkill(fileContent);
-
-        if (skill) {
-          this.skills.set(skill.metadata.name, skill);
-        }
-      }
-    }
-  }
-
-  /**
-   * Parse a skill Markdown file with YAML frontmatter.
-   *
-   * Expected format:
-   * ---
-   * name: skill-name
-   * description: Brief description
-   * version: 1.0.0
-   * author: Author Name
-   * agents:
-   *   - agent1
-   *   - agent2
-   * ---
-   *
-   * # Skill Content
-   * ...
-   */
-  private parseSkill(content: string): Skill | null {
-    const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+  private parseSkill(content: string, skillDir?: string): Skill | null {
+    const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
     const match = content.match(frontmatterRegex);
 
     if (!match) {
+      console.warn("Skill file missing frontmatter");
       return null;
     }
 
     const [, frontmatter, body] = match;
     const metadata = this.parseFrontmatter(frontmatter);
 
-    if (!metadata.name || !metadata.description || !metadata.version) {
-      console.warn("Skill missing required fields (name, description, version)");
+    if (!metadata.name || !metadata.description) {
+      console.warn("Skill missing required metadata (name, description)");
       return null;
     }
 
     return {
       metadata,
       content: body.trim(),
+      skillDir,
     };
   }
 
   /**
-   * Simple YAML frontmatter parser.
-   * Handles basic key-value pairs and arrays.
+   * Parse YAML frontmatter into metadata object.
+   * Simple parser for basic key-value and list formats.
    */
-  private parseFrontmatter(frontmatter: string): any {
+  private parseFrontmatter(yaml: string): SkillMetadata {
     const metadata: any = {};
-    const lines = frontmatter.split("\n");
+    const lines = yaml.split("\n");
     let currentKey: string | null = null;
-    let currentArray: string[] = [];
+    let currentList: string[] = [];
 
     for (const line of lines) {
       const trimmed = line.trim();
-
       if (!trimmed) continue;
 
-      // Array item
+      // List item
       if (trimmed.startsWith("- ")) {
         if (currentKey) {
-          currentArray.push(trimmed.substring(2).trim());
+          currentList.push(trimmed.substring(2).trim());
         }
         continue;
       }
@@ -146,32 +134,29 @@ export class SkillLoader {
       // Key-value pair
       const colonIndex = trimmed.indexOf(":");
       if (colonIndex > 0) {
-        // Save previous array if exists
-        if (currentKey && currentArray.length > 0) {
-          metadata[currentKey] = currentArray;
-          currentArray = [];
+        // Save previous list if any
+        if (currentKey && currentList.length > 0) {
+          metadata[currentKey] = currentList;
+          currentList = [];
         }
 
         const key = trimmed.substring(0, colonIndex).trim();
         const value = trimmed.substring(colonIndex + 1).trim();
 
         currentKey = key;
-
         if (value) {
-          // Simple value
           metadata[key] = value;
           currentKey = null;
         }
-        // else: array follows
       }
     }
 
-    // Save last array if exists
-    if (currentKey && currentArray.length > 0) {
-      metadata[currentKey] = currentArray;
+    // Save final list if any
+    if (currentKey && currentList.length > 0) {
+      metadata[currentKey] = currentList;
     }
 
-    return metadata;
+    return metadata as SkillMetadata;
   }
 
   /**
@@ -196,9 +181,9 @@ export class SkillLoader {
   }
 
   /**
-   * Get the number of loaded skills.
+   * Clear all loaded skills.
    */
-  get size(): number {
-    return this.skills.size;
+  clear(): void {
+    this.skills.clear();
   }
 }
