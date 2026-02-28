@@ -46,7 +46,10 @@ export * from "./routing/index.js";
 export * from "./memory/index.js";
 
 // ─── Skills Module ───
-export * from "./skills/index.js";
+// Note: Skill definitions are stored in .skills/ directory as Markdown files
+// Loaded dynamically by core/skill-loader
+export { SkillLoader } from "./core/index.js";
+export type { Skill, SkillMetadata } from "./core/index.js";
 
 // ─── Observability Module ───
 export * from "./observability/index.js";

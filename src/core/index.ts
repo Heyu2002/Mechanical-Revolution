@@ -20,3 +20,7 @@ export {
   ORCHESTRATOR_PROMPT,
 } from "./prompt-loader.js";
 export type { SystemPromptParts } from "./prompt-loader.js";
+
+// Skill Loader
+export { SkillLoader } from "./skill-loader.js";
+export type { Skill, SkillMetadata } from "./skill-loader.js";

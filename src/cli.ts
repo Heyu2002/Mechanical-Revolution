@@ -12,7 +12,7 @@ import type { AgentConfig, AgentContext, FrameworkConfig, RunnerEvent, TaskFlow 
 import { AgentRegistry } from "./core/agent/registry.js";
 import { createChatDetector } from "./routing/chat-detector.js";
 import { createAIRouter } from "./routing/ai-router.js";
-import { SkillLoader } from "./skills/loader.js";
+import { SkillLoader } from "./core/skill-loader.js";
 import * as path from "path";
 
 // ─── Slash Commands ───
