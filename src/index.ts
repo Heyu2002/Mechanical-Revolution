@@ -85,10 +85,6 @@ export type { SystemPromptParts } from "./prompts/index.js";
 export { SkillLoader } from "./skill-loader.js";
 export type { Skill, SkillMetadata } from "./skill-loader.js";
 
-// ─── Agent Matcher ───
-export { TFIDFAgentMatcher, createAgentMatcher } from "./agent-matcher.js";
-export type { AgentMatchResult } from "./agent-matcher.js";
-
 // ─── Chat Detector ───
 export { SimpleChatDetector, createChatDetector } from "./chat-detector.js";
 export type { ChatDetectionResult } from "./chat-detector.js";
@@ -97,31 +93,12 @@ export type { ChatDetectionResult } from "./chat-detector.js";
 export { AITaskRouter, createAIRouter } from "./ai-task-router.js";
 export type { TaskRoutingDecision } from "./ai-task-router.js";
 
-// ─── Task Complexity ───
-export { TaskComplexityClassifier, createComplexityClassifier } from "./task-complexity.js";
-export type { TaskComplexityResult, TaskFeatures } from "./task-complexity.js";
-
-// ─── Adaptive Task Complexity ───
-export { AdaptiveTaskComplexityClassifier, createAdaptiveClassifier } from "./adaptive-task-complexity.js";
-export type { TrainingSample, LearningStats } from "./adaptive-task-complexity.js";
-
 // ─── Agent Registry ───
 export { AgentRegistry } from "./agent-registry.js";
 export type { AgentRegistryOptions } from "./agent-registry.js";
 
 // ─── Agent Loader ───
 export { parseAgentMarkdown, serializeAgentMarkdown } from "./agent-loader.js";
-
-// ─── Tool Registry ───
-export { ToolRegistry, globalToolRegistry } from "./tool-registry.js";
-
-// ─── Config Manager ───
-export { ConfigManager, globalConfigManager } from "./config-manager.js";
-export type { ConfigLayer } from "./config-manager.js";
-
-// ─── Subagent Tool ───
-export { SubagentTool, createSubagentTool, createSubagentTools, isSubagentTool } from "./subagent-tool.js";
-export type { SubagentToolOptions } from "./subagent-tool.js";
 
 // ─── Event Bus ───
 export { EventBus, globalEventBus } from "./event-bus.js";
