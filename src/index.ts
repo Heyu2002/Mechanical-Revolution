@@ -141,6 +141,13 @@ export type {
   FlowCompleteEvent,
 } from "./event-bus.js";
 
+// ─── Memory System ───
+export { MemorySystem, createMemorySystem } from "./memory-system.js";
+export type {
+  MemoryEntry,
+  MemorySearchResult,
+} from "./memory-system.js";
+
 // ─── Utils ───
 export { Logger, logger } from "./utils/logger.js";
 export { collectStream, createChannel } from "./utils/stream.js";
