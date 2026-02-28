@@ -7,12 +7,12 @@ import { defineAgent } from "./core/agent/agent.js";
 import { createContext } from "./core/runner/context.js";
 import { InteractivePrompt } from "./cli/autocomplete.js";
 import type { CommandItem } from "./cli/autocomplete.js";
-import { DEFAULT_SYSTEM_PROMPT } from "./core/prompt-loader.js";
+import { DEFAULT_SYSTEM_PROMPT } from "./core/prompts.js";
 import type { AgentConfig, AgentContext, FrameworkConfig, RunnerEvent, TaskFlow } from "./types.js";
 import { AgentRegistry } from "./core/agent/registry.js";
 import { createChatDetector } from "./routing/chat-detector.js";
 import { createAIRouter } from "./routing/ai-router.js";
-import { SkillLoader } from "./core/skill-loader.js";
+import { SkillLoader } from "./core/skills.js";
 import * as path from "path";
 
 // ─── Slash Commands ───
@@ -638,11 +638,8 @@ async function main(): Promise<void> {
           console.log(`${C.dim}No skills found.${C.reset}\n`);
         } else {
           for (const skill of skills) {
-            console.log(`\n${C.green}${skill.name}${C.reset} ${C.dim}(v${skill.version})${C.reset}`);
+            console.log(`\n${C.green}${skill.name}${C.reset}`);
             console.log(`  ${skill.description}`);
-            if (skill.agents && skill.agents.length > 0) {
-              console.log(`  ${C.dim}Agents: ${skill.agents.join(", ")}${C.reset}`);
-            }
           }
           console.log(`\n${C.dim}Use /skill <name> to view details${C.reset}\n`);
         }
@@ -663,15 +660,9 @@ async function main(): Promise<void> {
           return false;
         }
 
-        console.log(`\n${C.cyan}${C.bold}${skill.metadata.name}${C.reset} ${C.dim}(v${skill.metadata.version})${C.reset}`);
+        console.log(`\n${C.cyan}${C.bold}${skill.metadata.name}${C.reset}`);
         console.log(`${C.dim}─────────────────${C.reset}`);
         console.log(`${skill.metadata.description}`);
-        if (skill.metadata.author) {
-          console.log(`${C.dim}Author: ${skill.metadata.author}${C.reset}`);
-        }
-        if (skill.metadata.agents && skill.metadata.agents.length > 0) {
-          console.log(`${C.dim}Agents: ${skill.metadata.agents.join(", ")}${C.reset}`);
-        }
         console.log(`\n${C.dim}─────────────────${C.reset}`);
         console.log(skill.content);
         console.log();

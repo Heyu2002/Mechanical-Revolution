@@ -47,9 +47,15 @@ export * from "./memory/index.js";
 
 // ─── Skills Module ───
 // Note: Skill definitions are stored in .skills/ directory as Markdown files
-// Loaded dynamically by core/skill-loader
+// Loaded on-demand by core/skills
 export { SkillLoader } from "./core/index.js";
-export type { Skill, SkillMetadata } from "./core/index.js";
+export type { Skill, SkillMetadata, SkillScope } from "./core/index.js";
+export { renderSkillsSection, renderActivatedSkill } from "./core/index.js";
+export { createActivateSkillTool } from "./core/index.js";
+
+// ─── AGENTS.md Support ───
+export { AgentsMdLoader } from "./core/index.js";
+export type { AgentsMdFile } from "./core/index.js";
 
 // ─── Observability Module ───
 export * from "./observability/index.js";
@@ -66,9 +72,10 @@ export { buildToolCallPrompt, parseToolCallFromText } from "./providers/tool-pro
 
 // ─── Prompts ───
 // Note: Prompt content is stored in src/prompts/ as Markdown files
-// Loaded dynamically by core/prompt-loader
+// Loaded on-demand from files
 export { DEFAULT_SYSTEM_PROMPT, PROMPT_PARTS, buildSystemPrompt } from "./core/index.js";
 export { ARCHITECTURE_REFERENCE, getArchitectureReference } from "./core/index.js";
+export { getDefaultSystemPrompt } from "./core/index.js";
 export type { SystemPromptParts } from "./core/index.js";
 
 // ─── Utils ───

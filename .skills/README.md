@@ -19,11 +19,6 @@ Skill 是一个声明式的任务处理模板，它描述了：
 ---
 name: skill-name
 description: Brief description of what this skill does
-version: 1.0.0
-author: Your Name
-agents:
-  - agent1
-  - agent2
 ---
 
 # Skill Name

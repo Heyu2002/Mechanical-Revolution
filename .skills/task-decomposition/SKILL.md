@@ -1,15 +1,6 @@
 ---
 name: task-decomposition
 description: Decompose complex tasks and delegate to specialist agents based on their capabilities
-version: 1.0.0
-author: Mechanical-Revolution
-agents:
-  - orchestrator
-  - researcher
-  - coder
-  - mathematician
-  - translator
-  - summarizer
 ---
 
 # Task Decomposition Skill

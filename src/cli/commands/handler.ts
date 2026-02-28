@@ -1,11 +1,11 @@
 import { C, printHelp, resolveProviderName, getDisplayName } from "../ui/index.js";
 import { defineAgent } from "../../core/agent/agent.js";
-import { DEFAULT_SYSTEM_PROMPT } from "../../prompts/index.js";
+import { DEFAULT_SYSTEM_PROMPT } from "../../core/prompts.js";
 import type { AgentConfig, FrameworkConfig, AgentContext } from "../../types.js";
 import type { Runner } from "../../core/runner/runner.js";
 import type { InteractivePrompt } from "../autocomplete.js";
 import type { FlowRenderer } from "../ui/flow-renderer.js";
-import type { SkillLoader } from "../../skills/loader.js";
+import type { SkillLoader } from "../../core/skills.js";
 
 export interface CommandContext {
   config: FrameworkConfig;
@@ -191,11 +191,8 @@ function handleSkillsCommand(args: string[], context: CommandContext): { shouldE
     console.log(`${C.dim}No skills found.${C.reset}\n`);
   } else {
     for (const skill of skills) {
-      console.log(`\n${C.green}${skill.name}${C.reset} ${C.dim}(v${skill.version})${C.reset}`);
+      console.log(`\n${C.green}${skill.name}${C.reset}`);
       console.log(`  ${skill.description}`);
-      if (skill.agents && skill.agents.length > 0) {
-        console.log(`  ${C.dim}Agents: ${skill.agents.join(", ")}${C.reset}`);
-      }
     }
     console.log(`\n${C.dim}Use /skill <name> to view details${C.reset}\n`);
   }
@@ -218,15 +215,9 @@ function handleSkillCommand(args: string[], context: CommandContext): { shouldEx
     return { shouldExit: false };
   }
 
-  console.log(`\n${C.cyan}${C.bold}${skill.metadata.name}${C.reset} ${C.dim}(v${skill.metadata.version})${C.reset}`);
+  console.log(`\n${C.cyan}${C.bold}${skill.metadata.name}${C.reset}`);
   console.log(`${C.dim}─────────────────${C.reset}`);
   console.log(`${skill.metadata.description}`);
-  if (skill.metadata.author) {
-    console.log(`${C.dim}Author: ${skill.metadata.author}${C.reset}`);
-  }
-  if (skill.metadata.agents && skill.metadata.agents.length > 0) {
-    console.log(`${C.dim}Agents: ${skill.metadata.agents.join(", ")}${C.reset}`);
-  }
   console.log(`\n${C.dim}─────────────────${C.reset}`);
   console.log(skill.content);
   console.log();

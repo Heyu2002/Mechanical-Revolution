@@ -11,4 +11,11 @@ export default defineConfig({
     // Add shebang only to cli.js
     return { js: "" };
   },
+  // Copy prompts directory to dist
+  async onSuccess() {
+    const { cpSync } = await import("fs");
+    const { join } = await import("path");
+    cpSync(join("src", "prompts"), join("dist", "prompts"), { recursive: true });
+    console.log("✓ Copied prompts to dist/");
+  },
 });
