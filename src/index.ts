@@ -73,6 +73,7 @@ export {
   ORCHESTRATOR_PROMPT,
   AGENT_PROMPTS,
 } from "./prompts/index.js";
+export { ARCHITECTURE_REFERENCE, getArchitectureReference } from "./prompts/index.js";
 export type { SystemPromptParts } from "./prompts/index.js";
 
 // ─── Utils ───

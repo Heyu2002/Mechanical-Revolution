@@ -17,3 +17,9 @@ export {
   ORCHESTRATOR_PROMPT,
   AGENT_PROMPTS,
 } from "./agents.js";
+
+// ─── Architecture Reference ───
+export {
+  ARCHITECTURE_REFERENCE,
+  getArchitectureReference,
+} from "./architecture.js";

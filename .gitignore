@@ -7,6 +7,3 @@ config/config.json
 
 # Summary and analysis documents
 summary/
-
-# System prompts for AI reference
-system_prompt/
