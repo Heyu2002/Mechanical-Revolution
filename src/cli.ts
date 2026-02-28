@@ -7,7 +7,7 @@ import { defineAgent } from "./core/agent/agent.js";
 import { createContext } from "./core/runner/context.js";
 import { InteractivePrompt } from "./cli/autocomplete.js";
 import type { CommandItem } from "./cli/autocomplete.js";
-import { DEFAULT_SYSTEM_PROMPT } from "./prompts/index.js";
+import { DEFAULT_SYSTEM_PROMPT } from "./core/prompt-loader.js";
 import type { AgentConfig, AgentContext, FrameworkConfig, RunnerEvent, TaskFlow } from "./types.js";
 import { AgentRegistry } from "./core/agent/registry.js";
 import { createChatDetector } from "./routing/chat-detector.js";

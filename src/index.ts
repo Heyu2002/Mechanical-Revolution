@@ -62,19 +62,11 @@ export { providerRegistry, registerBuiltinProviders } from "./providers/index.js
 export { buildToolCallPrompt, parseToolCallFromText } from "./providers/tool-prompt.js";
 
 // ─── Prompts ───
-export { DEFAULT_SYSTEM_PROMPT, PROMPT_PARTS, buildSystemPrompt } from "./prompts/index.js";
-export {
-  TRIAGE_PROMPT,
-  RESEARCHER_PROMPT,
-  MATHEMATICIAN_PROMPT,
-  CODER_PROMPT,
-  TRANSLATOR_PROMPT,
-  SUMMARIZER_PROMPT,
-  ORCHESTRATOR_PROMPT,
-  AGENT_PROMPTS,
-} from "./prompts/index.js";
-export { ARCHITECTURE_REFERENCE, getArchitectureReference } from "./prompts/index.js";
-export type { SystemPromptParts } from "./prompts/index.js";
+// Note: Prompt content is stored in src/prompts/ as Markdown files
+// Loaded dynamically by core/prompt-loader
+export { DEFAULT_SYSTEM_PROMPT, PROMPT_PARTS, buildSystemPrompt } from "./core/index.js";
+export { ARCHITECTURE_REFERENCE, getArchitectureReference } from "./core/index.js";
+export type { SystemPromptParts } from "./core/index.js";
 
 // ─── Utils ───
 export { Logger, logger } from "./utils/logger.js";

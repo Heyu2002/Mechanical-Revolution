@@ -9,3 +9,14 @@ export * from "./tool/index.js";
 
 // Guardrail
 export * from "./guardrail/index.js";
+
+// Prompt Loader
+export {
+  DEFAULT_SYSTEM_PROMPT,
+  ARCHITECTURE_REFERENCE,
+  getArchitectureReference,
+  buildSystemPrompt,
+  PROMPT_PARTS,
+  ORCHESTRATOR_PROMPT,
+} from "./prompt-loader.js";
+export type { SystemPromptParts } from "./prompt-loader.js";
