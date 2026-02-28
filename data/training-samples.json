@@ -1,0 +1,802 @@
+[
+  {
+    "input": "你好",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 0.4,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 17.377,
+    "actualComplexity": 10,
+    "actualDecision": "chitchat",
+    "timestamp": 1772181658185
+  },
+  {
+    "input": "今天天气真好",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 1.2,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 17.430999999999997,
+    "actualComplexity": 10,
+    "actualDecision": "chitchat",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "谢谢",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 0.4,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 17.377,
+    "actualComplexity": 10,
+    "actualDecision": "chitchat",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "再见",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 0,
+        "complexityScore": 30,
+        "lengthScore": 0.4,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 20.752,
+    "actualComplexity": 10,
+    "actualDecision": "chitchat",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "哈哈",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 0.4,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 30
+      }
+    },
+    "predictedComplexity": 17.002,
+    "actualComplexity": 10,
+    "actualDecision": "chitchat",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "什么是 React？",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 2,
+        "techScore": 14.285714285714285
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 60,
+        "completenessScore": 16.666666666666664,
+        "professionalScore": 48.57142857142857
+      }
+    },
+    "predictedComplexity": 17.802857142857142,
+    "actualComplexity": 25,
+    "actualDecision": "simple_query",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "TypeScript 和 JavaScript 有什么区别？",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 6,
+        "techScore": 14.285714285714285
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 16.666666666666664,
+        "professionalScore": 48.57142857142857
+      }
+    },
+    "predictedComplexity": 19.27285714285714,
+    "actualComplexity": 25,
+    "actualDecision": "simple_query",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "如何安装 Node.js？",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 2.6,
+        "techScore": 28.57142857142857
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 60,
+        "completenessScore": 16.666666666666664,
+        "professionalScore": 57.14285714285714
+      }
+    },
+    "predictedComplexity": 18.486214285714286,
+    "actualComplexity": 25,
+    "actualDecision": "simple_query",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "Python 的优势是什么？",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 2.8,
+        "techScore": 14.285714285714285
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 16.666666666666664,
+        "professionalScore": 48.57142857142857
+      }
+    },
+    "predictedComplexity": 19.05685714285714,
+    "actualComplexity": 25,
+    "actualDecision": "simple_query",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "什么是机器学习？",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 15,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 1.6,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 60,
+        "completenessScore": 16.666666666666664,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 19.4955,
+    "actualComplexity": 25,
+    "actualDecision": "simple_query",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "帮我实现一个二叉树遍历算法",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 50,
+        "goalWordScore": 30,
+        "complexityScore": 0,
+        "lengthScore": 2.6,
+        "techScore": 14.285714285714285
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 35,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 48.57142857142857
+      }
+    },
+    "predictedComplexity": 32.41835714285715,
+    "actualComplexity": 40,
+    "actualDecision": "medium_task",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "写一篇关于人工智能的中文文章",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 50,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 2.8,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 35,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 29.089000000000002,
+    "actualComplexity": 40,
+    "actualDecision": "medium_task",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "分析这张图片中的文字内容",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 35,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 2.4,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 100,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 33.5245,
+    "actualComplexity": 40,
+    "actualDecision": "medium_task",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "计算这个数据集的平均值和标准差",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 35,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 3,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 70,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 30.415,
+    "actualComplexity": 40,
+    "actualDecision": "medium_task",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "优化这段 TypeScript 代码的性能",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 35,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 4.2,
+        "techScore": 14.285714285714285
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 35,
+        "constraintScore": 25,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 48.57142857142857
+      }
+    },
+    "predictedComplexity": 29.21385714285714,
+    "actualComplexity": 40,
+    "actualDecision": "medium_task",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "翻译这段英文文档成中文",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 2.2,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 17.4985,
+    "actualComplexity": 40,
+    "actualDecision": "medium_task",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "设计一个用户登录界面",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 50,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 2,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 35,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 16.666666666666664,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 29.909999999999997,
+    "actualComplexity": 40,
+    "actualDecision": "medium_task",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "研究 React 19 的新特性，然后创建示例组件，并编写测试用例",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 100,
+        "goalWordScore": 0,
+        "complexityScore": 30,
+        "lengthScore": 6.6,
+        "techScore": 14.285714285714285
+      },
+      "structural": {
+        "stepScore": 35,
+        "domainScore": 70,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 48.57142857142857
+      }
+    },
+    "predictedComplexity": 49.200857142857146,
+    "actualComplexity": 60,
+    "actualDecision": "complex_task",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "首先分析这个数据集的统计特征，然后用 Python 实现机器学习模型，最后生成可视化报告",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 100,
+        "goalWordScore": 0,
+        "complexityScore": 60,
+        "lengthScore": 8.8,
+        "techScore": 14.285714285714285
+      },
+      "structural": {
+        "stepScore": 35,
+        "domainScore": 100,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 48.57142857142857
+      }
+    },
+    "predictedComplexity": 55.87435714285714,
+    "actualComplexity": 60,
+    "actualDecision": "complex_task",
+    "timestamp": 1772181658186
+  },
+  {
+    "input": "实现一个完整的用户认证系统，包括注册、登录、密码重置功能，使用 TypeScript 和 React，需要支持 JWT 认证，并且要有完整的单元测试",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 50,
+        "goalWordScore": 30,
+        "complexityScore": 35,
+        "lengthScore": 14.8,
+        "techScore": 28.57142857142857
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 35,
+        "constraintScore": 25,
+        "outputScore": 80
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 16.666666666666664,
+        "professionalScore": 57.14285714285714
+      }
+    },
+    "predictedComplexity": 43.59721428571429,
+    "actualComplexity": 60,
+    "actualDecision": "complex_task",
+    "timestamp": 1772181658187
+  },
+  {
+    "input": "调研市场上的竞品，分析他们的优缺点，然后设计我们的产品方案，并制定开发计划",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 100,
+        "goalWordScore": 0,
+        "complexityScore": 30,
+        "lengthScore": 7.4,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 35,
+        "domainScore": 100,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 51.762,
+    "actualComplexity": 60,
+    "actualDecision": "complex_task",
+    "timestamp": 1772181658187
+  },
+  {
+    "input": "阅读这篇论文，总结核心观点，然后用 Python 复现实验，最后写一份技术报告",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 50,
+        "goalWordScore": 0,
+        "complexityScore": 60,
+        "lengthScore": 7.8,
+        "techScore": 14.285714285714285
+      },
+      "structural": {
+        "stepScore": 35,
+        "domainScore": 35,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 48.57142857142857
+      }
+    },
+    "predictedComplexity": 41.10685714285714,
+    "actualComplexity": 60,
+    "actualDecision": "complex_task",
+    "timestamp": 1772181658187
+  },
+  {
+    "input": "帮我debug这段代码",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 30,
+        "complexityScore": 0,
+        "lengthScore": 2.2,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 35,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 30.41354934678275,
+    "actualComplexity": 40,
+    "actualDecision": "medium_task",
+    "timestamp": 1772181658223
+  },
+  {
+    "input": "你能做什么？",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 0,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 1.2,
+        "techScore": 0
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 0,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 16.666666666666664,
+        "professionalScore": 40
+      }
+    },
+    "predictedComplexity": 26.644842074121904,
+    "actualComplexity": 25,
+    "actualDecision": "simple_query",
+    "timestamp": 1772181658224
+  },
+  {
+    "input": "设计一个电商系统，包括前端、后端、数据库，并部署到云端",
+    "features": {
+      "linguistic": {
+        "actionVerbScore": 50,
+        "goalWordScore": 0,
+        "complexityScore": 0,
+        "lengthScore": 5.4,
+        "techScore": 14.285714285714285
+      },
+      "structural": {
+        "stepScore": 0,
+        "domainScore": 70,
+        "constraintScore": 0,
+        "outputScore": 20
+      },
+      "contextual": {
+        "taskStateScore": 0,
+        "relevanceScore": 0,
+        "historyScore": 0
+      },
+      "semantic": {
+        "intentScore": 80,
+        "completenessScore": 0,
+        "professionalScore": 48.57142857142857
+      }
+    },
+    "predictedComplexity": 38.96574758238123,
+    "actualComplexity": 60,
+    "actualDecision": "complex_task",
+    "timestamp": 1772181658224
+  }
+]

@@ -1,0 +1,6 @@
+node_modules/
+dist/
+*.tgz
+
+# Config with real API keys
+config/config.json

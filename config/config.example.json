@@ -1,0 +1,48 @@
+{
+  "defaultProvider": "doubao",
+  "autonomousMode": false,
+  "workspace": "/path/to/your/workspace",
+
+  "anthropic": {
+    "apiKey": "your-anthropic-api-key",
+    "baseUrl": "https://api.anthropic.com",
+    "model": "claude-sonnet-4-20250514",
+    "apiType": "anthropic",
+    "nativeToolCall": true
+  },
+  "openai": {
+    "apiKey": "your-openai-api-key",
+    "baseUrl": "https://api.openai.com/v1",
+    "model": "gpt-4o",
+    "apiType": "openai",
+    "nativeToolCall": true
+  },
+  "doubao": {
+    "apiKey": "your-doubao-api-key",
+    "baseUrl": "https://ark.cn-beijing.volces.com/api/v3",
+    "model": "doubao-seed-1-8-251228",
+    "apiType": "openai",
+    "nativeToolCall": false
+  },
+  "qwen": {
+    "apiKey": "your-qwen-api-key",
+    "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "model": "qwen-plus",
+    "apiType": "openai",
+    "nativeToolCall": false
+  },
+  "deepseek": {
+    "apiKey": "your-deepseek-api-key",
+    "baseUrl": "https://api.deepseek.com/v1",
+    "model": "deepseek-chat",
+    "apiType": "openai",
+    "nativeToolCall": false
+  },
+  "ollama": {
+    "apiKey": "ollama",
+    "baseUrl": "http://127.0.0.1:11434/v1",
+    "model": "your-model-name",
+    "apiType": "openai",
+    "nativeToolCall": false
+  }
+}
