@@ -4,3 +4,6 @@ dist/
 
 # Config with real API keys
 config/config.json
+
+# Summary and analysis documents
+summary/
