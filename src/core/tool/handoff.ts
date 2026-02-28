@@ -5,7 +5,7 @@ import type {
   HandoffResult,
   Message,
   ProviderToolSchema,
-} from "./types.js";
+} from "../../types.js";
 
 /**
  * Create a handoff target — declares that an agent can transfer control to another.

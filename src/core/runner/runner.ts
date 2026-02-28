@@ -6,16 +6,16 @@ import type {
   ProviderToolSchema,
   RunnerEvent,
   RunResult,
-} from "./types.js";
-import { resolveInstructions } from "./agent.js";
-import { toolToSchema, executeTool } from "./tool.js";
-import { handoffsToTools, isHandoffTool } from "./handoff.js";
-import { runGuardrails } from "./guardrail.js";
+} from "../../types.js";
+import { resolveInstructions } from "../agent/agent.js";
+import { toolToSchema, executeTool } from "../tool/tool.js";
+import { handoffsToTools, isHandoffTool } from "../tool/handoff.js";
+import { runGuardrails } from "../guardrail/guardrail.js";
 import { createContext } from "./context.js";
-import { Tracer, formatTrace } from "./tracing.js";
-import { TaskFlowTracker } from "./task-flow.js";
-import { providerRegistry } from "./providers/registry.js";
-import { logger } from "./utils/logger.js";
+import { Tracer, formatTrace } from "../../observability/tracing.js";
+import { TaskFlowTracker } from "../../observability/task-flow.js";
+import { providerRegistry } from "../../providers/registry.js";
+import { logger } from "../../utils/logger.js";
 
 /**
  * Runner — the agentic loop execution engine.

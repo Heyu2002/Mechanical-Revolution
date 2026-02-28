@@ -14,7 +14,7 @@ import type {
   RunResult,
   TaskFlow,
   Message,
-} from "./types.js";
+} from "../types.js";
 
 // ─── Event Types ───
 

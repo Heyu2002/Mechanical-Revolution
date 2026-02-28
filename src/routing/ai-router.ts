@@ -4,8 +4,8 @@
  * 使用 AI 分析任务并决定分配给哪个 agent
  */
 
-import type { AgentConfig, ProviderConfig } from "./types.js";
-import { providerRegistry } from "./providers/registry.js";
+import type { AgentConfig, ProviderConfig } from "../types.js";
+import { providerRegistry } from "../providers/registry.js";
 
 export interface TaskRoutingDecision {
   targetAgent: string;

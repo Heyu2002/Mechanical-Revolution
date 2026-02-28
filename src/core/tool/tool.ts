@@ -4,7 +4,7 @@ import type {
   ToolDefinition,
   ProviderToolSchema,
   AgentContext,
-} from "./types.js";
+} from "../../types.js";
 
 /**
  * Define a tool with Zod schema validation.

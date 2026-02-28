@@ -36,29 +36,23 @@ export type {
 } from "./types.js";
 export { isProviderConfig } from "./types.js";
 
-// ─── Core Primitives ───
-export { defineAgent, resolveInstructions, createOrchestratorInstructions } from "./agent.js";
-export { defineTool, toolToSchema, executeTool } from "./tool.js";
-export { handoff, handoffsToTools, isHandoffTool } from "./handoff.js";
-export { createContext, cloneContext } from "./context.js";
-export {
-  defineGuardrail,
-  runGuardrails,
-  maxLengthGuardrail,
-  contentFilterGuardrail,
-} from "./guardrail.js";
+// ─── Core Module ───
+export * from "./core/index.js";
 
-// ─── Runner ───
-export { Runner } from "./runner.js";
+// ─── Routing Module ───
+export * from "./routing/index.js";
 
-// ─── Task Flow ───
-export { TaskFlowTracker } from "./task-flow.js";
+// ─── Memory Module ───
+export * from "./memory/index.js";
 
-// ─── Tracing ───
-export { Tracer, formatTrace } from "./tracing.js";
+// ─── Skills Module ───
+export * from "./skills/index.js";
 
-// ─── Config ───
-export { loadConfig, getProviders, getProviderConfig } from "./config.js";
+// ─── Observability Module ───
+export * from "./observability/index.js";
+
+// ─── Config Module ───
+export * from "./config/index.js";
 
 // ─── Providers ───
 export { BaseProvider } from "./providers/base.js";
@@ -80,55 +74,6 @@ export {
   AGENT_PROMPTS,
 } from "./prompts/index.js";
 export type { SystemPromptParts } from "./prompts/index.js";
-
-// ─── Skills ───
-export { SkillLoader } from "./skill-loader.js";
-export type { Skill, SkillMetadata } from "./skill-loader.js";
-
-// ─── Chat Detector ───
-export { SimpleChatDetector, createChatDetector } from "./chat-detector.js";
-export type { ChatDetectionResult } from "./chat-detector.js";
-
-// ─── AI Task Router ───
-export { AITaskRouter, createAIRouter } from "./ai-task-router.js";
-export type { TaskRoutingDecision } from "./ai-task-router.js";
-
-// ─── Agent Registry ───
-export { AgentRegistry } from "./agent-registry.js";
-export type { AgentRegistryOptions } from "./agent-registry.js";
-
-// ─── Agent Loader ───
-export { parseAgentMarkdown, serializeAgentMarkdown } from "./agent-loader.js";
-
-// ─── Event Bus ───
-export { EventBus, globalEventBus } from "./event-bus.js";
-export type {
-  BusEvent,
-  AgentStartedEvent,
-  AgentCompletedEvent,
-  AgentErrorEvent,
-  ToolCalledEvent,
-  ToolCompletedEvent,
-  ToolErrorEvent,
-  RoutingDecisionEvent,
-  LearningUpdatedEvent,
-  ConfigChangedEvent,
-  AgentRegisteredEvent,
-  AgentUnregisteredEvent,
-  FlowCompleteEvent,
-} from "./event-bus.js";
-
-// ─── Task Memory System ───
-export { TaskMemorySystem, createTaskMemorySystem } from "./task-memory-system.js";
-export type {
-  TaskMemoryEntry,
-  TaskStep,
-  TaskDecomposition,
-  TaskMemorySearchResult,
-  TaskMemoryConfig,
-  QuickMemory,
-  DeepMemory,
-} from "./task-memory-system.js";
 
 // ─── Utils ───
 export { Logger, logger } from "./utils/logger.js";

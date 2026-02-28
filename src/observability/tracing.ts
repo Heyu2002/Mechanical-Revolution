@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import type { Trace, TraceSpan, TraceSpanType } from "./types.js";
+import type { Trace, TraceSpan, TraceSpanType } from "../types.js";
 
 /**
  * Tracer — records structured execution spans for a single run.

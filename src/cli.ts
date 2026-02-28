@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 
-import { loadConfig, getProviderConfig } from "./config.js";
-import { Runner } from "./runner.js";
+import { loadConfig, getProviderConfig } from "./config/config.js";
+import { Runner } from "./core/runner/runner.js";
 import { registerBuiltinProviders } from "./providers/index.js";
-import { defineAgent } from "./agent.js";
-import { createContext } from "./context.js";
-import { InteractivePrompt } from "./autocomplete.js";
-import type { CommandItem } from "./autocomplete.js";
+import { defineAgent } from "./core/agent/agent.js";
+import { createContext } from "./core/runner/context.js";
+import { InteractivePrompt } from "./cli/autocomplete.js";
+import type { CommandItem } from "./cli/autocomplete.js";
 import { DEFAULT_SYSTEM_PROMPT } from "./prompts/index.js";
 import type { AgentConfig, AgentContext, FrameworkConfig, RunnerEvent, TaskFlow } from "./types.js";
-import { AgentRegistry } from "./agent-registry.js";
-import { createChatDetector } from "./chat-detector.js";
-import { createAIRouter } from "./ai-task-router.js";
-import { SkillLoader } from "./skill-loader.js";
+import { AgentRegistry } from "./core/agent/registry.js";
+import { createChatDetector } from "./routing/chat-detector.js";
+import { createAIRouter } from "./routing/ai-router.js";
+import { SkillLoader } from "./skills/loader.js";
 import * as path from "path";
 
 // ─── Slash Commands ───

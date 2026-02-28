@@ -1,7 +1,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
-import type { FrameworkConfig, ProviderConfig } from "./types.js";
-import { isProviderConfig } from "./types.js";
+import type { FrameworkConfig, ProviderConfig } from "../types.js";
+import { isProviderConfig } from "../types.js";
 
 /** Known non-provider top-level keys in the config JSON */
 const RESERVED_KEYS = new Set([

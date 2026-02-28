@@ -1,4 +1,4 @@
-import type { Guardrail, GuardrailResult, AgentContext } from "./types.js";
+import type { Guardrail, GuardrailResult, AgentContext } from "../../types.js";
 
 /**
  * Define a guardrail for input or output validation.

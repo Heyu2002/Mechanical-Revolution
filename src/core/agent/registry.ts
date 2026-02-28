@@ -12,8 +12,8 @@
 import * as fs from "fs";
 import * as path from "path";
 import { EventEmitter } from "events";
-import type { AgentConfig } from "./types.js";
-import { parseAgentMarkdown } from "./agent-loader.js";
+import type { AgentConfig } from "../../types.js";
+import { parseAgentMarkdown } from "./loader.js";
 
 export interface AgentRegistryOptions {
   userAgentsDir?: string;       // 用户级 Agent 目录

@@ -1,5 +1,5 @@
-import type { AgentConfig, AgentContext } from "./types.js";
-import { ORCHESTRATOR_PROMPT } from "./prompts/agents.js";
+import type { AgentConfig, AgentContext } from "../../types.js";
+import { ORCHESTRATOR_PROMPT } from "../../prompts/agents.js";
 
 const DEFAULT_MAX_TURNS = 10;
 

@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import type { TaskFlow, TaskFlowNode, TaskState, TaskStatus } from "./types.js";
+import type { TaskFlow, TaskFlowNode, TaskState, TaskStatus } from "../types.js";
 
 /**
  * TaskFlowTracker — tracks the complete flow of tasks across agents.

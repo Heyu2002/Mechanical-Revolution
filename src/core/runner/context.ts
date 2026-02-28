@@ -1,4 +1,4 @@
-import type { AgentContext } from "./types.js";
+import type { AgentContext } from "../../types.js";
 
 /**
  * Create a fresh AgentContext with default values.

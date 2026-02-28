@@ -23,7 +23,7 @@
  */
 
 import * as yaml from "yaml";
-import type { AgentConfig, AgentCapabilities, AgentRunConfig, AgentToolConfig } from "./types.js";
+import type { AgentConfig, AgentCapabilities, AgentRunConfig, AgentToolConfig } from "../../types.js";
 
 interface AgentFrontmatter {
   name: string;
