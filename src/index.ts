@@ -141,14 +141,7 @@ export type {
   FlowCompleteEvent,
 } from "./event-bus.js";
 
-// ─── Memory System (Old) ───
-export { MemorySystem, createMemorySystem } from "./memory-system.js";
-export type {
-  MemoryEntry,
-  MemorySearchResult,
-} from "./memory-system.js";
-
-// ─── Task Memory System (New) ───
+// ─── Task Memory System ───
 export { TaskMemorySystem, createTaskMemorySystem } from "./task-memory-system.js";
 export type {
   TaskMemoryEntry,

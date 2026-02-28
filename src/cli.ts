@@ -12,7 +12,6 @@ import type { AgentConfig, AgentContext, FrameworkConfig, RunnerEvent, TaskFlow 
 import { AgentRegistry } from "./agent-registry.js";
 import { createChatDetector } from "./chat-detector.js";
 import { createAIRouter } from "./ai-task-router.js";
-import { createMemorySystem } from "./memory-system.js";
 import { SkillLoader } from "./skill-loader.js";
 import * as path from "path";
 
@@ -25,7 +24,6 @@ const SLASH_COMMANDS: CommandItem[] = [
   { name: "/agent",    description: "Switch active agent", hasArgs: true },
   { name: "/clear",    description: "Clear conversation history" },
   { name: "/verbose",  description: "Toggle verbose mode" },
-  { name: "/memory",   description: "Memory commands", hasArgs: true },
   { name: "/skills",   description: "List all available skills" },
   { name: "/skill",    description: "Show skill details", hasArgs: true },
   { name: "/quit",     description: "Exit" },
@@ -97,11 +95,6 @@ ${C.bold}Commands:${C.reset}
   ${C.cyan}/agent <name>${C.reset}        Switch active agent
   ${C.cyan}/clear${C.reset}               Clear conversation history
   ${C.cyan}/verbose${C.reset}             Toggle verbose mode (show LLM calls, tool results)
-  ${C.cyan}/memory${C.reset}              Show memory statistics
-  ${C.cyan}/memory search <query>${C.reset}  Search memories
-  ${C.cyan}/memory add <content>${C.reset}   Add a memory manually
-  ${C.cyan}/memory clear [quick|deep|both]${C.reset}  Clear memories
-  ${C.cyan}/memory stats${C.reset}        Show detailed memory statistics
   ${C.cyan}/skills${C.reset}              List all available skills
   ${C.cyan}/skill <name>${C.reset}        Show skill details
   ${C.cyan}/help${C.reset}                Show this help
@@ -373,16 +366,6 @@ async function main(): Promise<void> {
     console.log(`${C.green}✓${C.reset} ${C.dim}AI-driven routing enabled (using ${routerDisplay})${C.reset}\n`);
   }
 
-  // ─── Initialize memory system ───
-  const memorySystem = createMemorySystem({
-    memoryDir: path.join(process.cwd(), ".memory"),
-    quickMemorySize: 50,
-    deepMemoryEnabled: true,
-    autoSave: true,
-  });
-
-  console.log(`${C.green}✓${C.reset} ${C.dim}Memory system enabled${C.reset}\n`);
-
   // ─── Initialize skill loader ───
   const skillLoader = new SkillLoader(path.join(process.cwd(), ".skills"));
   skillLoader.loadAll();
@@ -432,26 +415,6 @@ async function main(): Promise<void> {
 
       // ─── AI-driven routing: detect chat and route tasks ───
       let targetAgent = activeAgent;
-
-      // ─── Search memory for context ───
-      const memoryResults = memorySystem.search(trimmed, { limit: 3, minScore: 0.5 });
-      let memoryContext = "";
-
-      if (memoryResults.length > 0 && flowRenderer.isVerbose()) {
-        console.log(`${C.dim}[Memory] Found ${memoryResults.length} relevant memories:${C.reset}`);
-        for (const result of memoryResults) {
-          console.log(`${C.dim}  - ${result.entry.content.substring(0, 60)}... (${(result.score * 100).toFixed(1)}%)${C.reset}`);
-        }
-        console.log();
-      }
-
-      // Build memory context for agent
-      if (memoryResults.length > 0) {
-        memoryContext = "\n\n[Relevant Context from Memory]:\n";
-        for (const result of memoryResults) {
-          memoryContext += `- ${result.entry.content}\n`;
-        }
-      }
 
       if (aiRouter && projectAgents.length > 0) {
         // Step 1: Check if it's simple chat
@@ -505,27 +468,9 @@ async function main(): Promise<void> {
         }
       }
 
-      // Add input with memory context to agent
-      const inputWithMemory = trimmed + memoryContext;
-
-      for await (const event of runner.runStream(targetAgent, inputWithMemory, ctx)) {
+      for await (const event of runner.runStream(targetAgent, trimmed, ctx)) {
         renderEvent(event);
       }
-
-      // ─── Save to memory ───
-      // Save user input
-      memorySystem.add(trimmed, {
-        context: "user_input",
-        tags: ["conversation", "user"],
-        importance: 0.6,
-        metadata: {
-          agent: targetAgent.name,
-          timestamp: new Date().toISOString(),
-        },
-      });
-
-      // Save agent response (from last text_delta events)
-      // This will be handled by the event renderer
 
     } catch (err) {
       console.error(`\n${C.red}Error: ${err instanceof Error ? err.message : err}${C.reset}\n`);
@@ -683,94 +628,6 @@ async function main(): Promise<void> {
         flowRenderer.setVerbose(!flowRenderer.isVerbose());
         console.log(`${C.dim}Verbose mode: ${flowRenderer.isVerbose() ? "on" : "off"}${C.reset}\n`);
         return false;
-
-      case "/memory": {
-        const subCmd = args[0];
-
-        if (!subCmd) {
-          // Show memory stats
-          const stats = memorySystem.getStats();
-          console.log(`\n${C.cyan}${C.bold}Memory Statistics${C.reset}`);
-          console.log(`${C.dim}─────────────────${C.reset}`);
-          console.log(`Quick Memory: ${C.green}${stats.quickMemoryCount}${C.reset} entries`);
-          console.log(`Deep Memory:  ${C.green}${stats.deepMemoryCount}${C.reset} entries`);
-          console.log(`Total:        ${C.green}${stats.totalSize}${C.reset} entries`);
-          console.log(`\n${C.dim}Usage: /memory <search|add|clear|stats>${C.reset}\n`);
-          return false;
-        }
-
-        switch (subCmd) {
-          case "search": {
-            const query = args.slice(1).join(" ");
-            if (!query) {
-              console.log(`${C.yellow}Usage: /memory search <query>${C.reset}\n`);
-              return false;
-            }
-
-            const results = memorySystem.search(query, { limit: 5 });
-            console.log(`\n${C.cyan}${C.bold}Search Results for "${query}"${C.reset}`);
-            console.log(`${C.dim}─────────────────${C.reset}`);
-
-            if (results.length === 0) {
-              console.log(`${C.dim}No memories found.${C.reset}\n`);
-            } else {
-              for (const result of results) {
-                console.log(`\n${C.green}[${result.source}]${C.reset} ${C.dim}(${(result.score * 100).toFixed(1)}%)${C.reset}`);
-                console.log(`${result.entry.content}`);
-                if (result.entry.context) {
-                  console.log(`${C.dim}Context: ${result.entry.context}${C.reset}`);
-                }
-                if (result.entry.tags && result.entry.tags.length > 0) {
-                  console.log(`${C.dim}Tags: ${result.entry.tags.join(", ")}${C.reset}`);
-                }
-              }
-              console.log();
-            }
-            return false;
-          }
-
-          case "add": {
-            const content = args.slice(1).join(" ");
-            if (!content) {
-              console.log(`${C.yellow}Usage: /memory add <content>${C.reset}\n`);
-              return false;
-            }
-
-            const id = memorySystem.add(content, {
-              context: "manual_entry",
-              tags: ["manual"],
-              importance: 0.8,
-            });
-            console.log(`${C.green}✓ Memory added: ${id}${C.reset}\n`);
-            return false;
-          }
-
-          case "clear": {
-            const target = args[1] as "quick" | "deep" | "both" | undefined;
-            memorySystem.clear(target);
-            console.log(`${C.green}✓ Memory cleared${target ? ` (${target})` : ""}${C.reset}\n`);
-            return false;
-          }
-
-          case "stats": {
-            const stats = memorySystem.getStats();
-            console.log(`\n${C.cyan}${C.bold}Detailed Memory Statistics${C.reset}`);
-            console.log(`${C.dim}─────────────────${C.reset}`);
-            console.log(`Quick Memory: ${C.green}${stats.quickMemoryCount}${C.reset} entries`);
-            console.log(`Deep Memory:  ${C.green}${stats.deepMemoryCount}${C.reset} entries`);
-            console.log(`Total:        ${C.green}${stats.totalSize}${C.reset} entries`);
-            console.log(`Oldest:       ${C.dim}${new Date(stats.oldestEntry).toLocaleString()}${C.reset}`);
-            console.log(`Newest:       ${C.dim}${new Date(stats.newestEntry).toLocaleString()}${C.reset}`);
-            console.log();
-            return false;
-          }
-
-          default:
-            console.log(`${C.yellow}Unknown memory command: ${subCmd}${C.reset}`);
-            console.log(`${C.dim}Available: search, add, clear, stats${C.reset}\n`);
-            return false;
-        }
-      }
 
       case "/skills": {
         const skills = skillLoader.list();

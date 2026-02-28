@@ -46,24 +46,56 @@ you > 帮我写一个快速排序算法
 - ✅ **高准确性** - 95% 置信度，清晰的推理过程
 - ✅ **自动适配** - 添加新 agent 无需修改代码
 
-### 💾 持久化记忆系统（NEW!）
+### 💾 任务记忆系统（NEW!）
 
-AI agents 能够记住之前的对话和重要信息：
+基于 JSON 的结构化任务记忆系统，完整记录任务执行过程：
 
-```
-you > /memory search TypeScript
-
-[Memory] Found 2 relevant memories:
-  - 用户喜欢使用 TypeScript 进行开发 (100.0%)
-  - 用户正在开发一个多 Agent 协作框架 (85.3%)
+```json
+{
+  "userInput": "研究 React 19 并创建示例组件",
+  "taskComplexity": {
+    "level": "complex_task",
+    "score": 65
+  },
+  "decomposition": {
+    "isDecomposed": true,
+    "subtasks": [
+      {
+        "description": "研究 React 19 特性",
+        "assignedAgent": "researcher"
+      },
+      {
+        "description": "创建示例组件",
+        "assignedAgent": "coder",
+        "dependencies": [0]
+      }
+    ]
+  },
+  "steps": [
+    {
+      "stepNumber": 1,
+      "agent": "orchestrator",
+      "input": "...",
+      "output": "分解为研究和编码任务"
+    },
+    {
+      "stepNumber": 2,
+      "agent": "researcher",
+      "toolCalls": [{"toolName": "web_search", ...}]
+    }
+  ],
+  "heatScore": 100,
+  "totalDuration": 6500
+}
 ```
 
 **特点**：
-- ✅ **两层记忆** - Quick Memory (热缓存) + Deep Memory (长期存储)
-- ✅ **智能搜索** - 多维度相关性计算
-- ✅ **LRU 淘汰** - 自动管理记忆容量
-- ✅ **Markdown 存储** - 人类可读的格式
-- ✅ **自动上下文注入** - 为 agent 提供相关记忆
+- ✅ **两层记忆** - Quick Memory (单个 JSON) + Deep Memory (按日期分文件)
+- ✅ **完整追踪** - 用户输入、复杂度、分解详情、执行步骤、工具调用
+- ✅ **任务分解记录** - Orchestrator 推理过程和子任务分配
+- ✅ **热度管理** - 自动淘汰低热度任务，保留重要任务
+- ✅ **按日期存储** - 深度记忆按日期分文件（YYYY-MM-DD.json）
+- ✅ **高级搜索** - 支持日期范围、来源过滤、相关性排序
 
 ### 🤖 智能 Agent 系统
 
@@ -228,11 +260,6 @@ you > 研究 React 19 新特性，创建示例组件，并编写测试
 | `/agents` | 列出所有 agents |
 | `/agent <name>` | 切换到指定 agent |
 | `/verbose` | 切换详细模式 |
-| `/memory` | 显示记忆统计 |
-| `/memory search <query>` | 搜索记忆 |
-| `/memory add <content>` | 手动添加记忆 |
-| `/memory clear [quick\|deep\|both]` | 清空记忆 |
-| `/memory stats` | 详细记忆统计 |
 | `/skills` | 列出所有可用的 skills |
 | `/skill <name>` | 显示指定 skill 的详细信息 |
 | `/clear` | 清除对话历史 |
